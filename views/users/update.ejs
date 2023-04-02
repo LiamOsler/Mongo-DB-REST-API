@@ -6,7 +6,7 @@
     <%- include("../partials/navuser") %>
     <h2>Update User</h2>
     <h3>API Route:</h3>
-    <p>PUT: <b>/users/update/:id</b> <i>submit a PUT request with a JSON body to update user with :id</i></p>
+    <p>PUT: <b>/users/update/id/:id</b><br><i>submit a PUT request with a JSON body to update user with :id</i></p>
     <p>
       <strong>Required values:</strong>
       <ul>
@@ -25,7 +25,7 @@
 </pre>
     <br>
     <h3>Update User:</h3>
-    <form id = "create-user">
+    <form id = "update-user">
       <label for="user-id">User _id:</label><br>
       <input type="text" id="user-id" name="user-id" required><br><br>
       <label for="username">Username:</label><br>
@@ -41,7 +41,30 @@
 </article>
 
 <script>
+  var updateUser = document.getElementById('update-user');
 
+  updateUser.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var username = document.getElementById('username').value;
+    var email = document.getElementById('email').value;
+    var bio = document.getElementById('bio').value;
+    var data = {
+      username: username,
+      email: email,
+      bio: bio
+    };
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/users/create', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        alert('User Created:' + xhr.responseText);
+      } else {
+        alert('Error: ' + xhr.status);
+      }
+    };
+    xhr.send();
+  });
 </script>
   
 <%- include("../partials/foot") %>

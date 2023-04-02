@@ -6,7 +6,7 @@
     <%- include("../partials/navuser") %>
     <h2>Create New User</h2>
     <h3>API Route:</h3>
-    <p>POST: <b>/users/create</b> <i>submit a POST request with a JSON body</i></p>
+    <p>POST: <b>/users/create</b><br><i>submit a POST request with a JSON body</i></p>
     <p>
       <strong>Required values:</strong>
       <ul>
@@ -61,7 +61,7 @@
         alert('Error: ' + xhr.status);
       }
     };
-    xhr.send(JSON.stringify(data));
+    xhr.send();
   });
 
 </script>

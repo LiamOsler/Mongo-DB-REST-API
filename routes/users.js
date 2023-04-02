@@ -81,7 +81,6 @@ router.get('/create', function(req, res, next) {
   This route will create a new user
 */
 router.post('/create', async function(req, res, next) {
-  console.log(req);
   await Users.create(req.body)
     .then((doc) => {
       res.send(doc);
@@ -104,6 +103,33 @@ router.get('/update', function(req, res, next) {
 });
 
 /* 
+  User update route.
+  This route will be called with the /users/update route
+  e.g. http://localhost:3000/users/update
+  This route will render the create user view.
+  This page is the page for updating information about an existing user.
+*/
+router.put('/update/id/:id', async function(req, res, next) {
+  await Users.findOneAndUpdate(
+    {
+      _id: req.params.id
+    }, 
+    req.body,
+    {
+      returnOriginal: false
+    })
+    .then((doc) => {
+      res.send(doc);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.send(err);
+    });
+
+});
+
+
+/* 
   User deletion page route.
   This route will be called with the /users/delete route
   e.g. http://localhost:3000/users/delete
@@ -113,5 +139,24 @@ router.get('/update', function(req, res, next) {
 router.get('/delete', function(req, res, next) {
   res.render('users/delete', { title: 'Users - Delete' });
 });
+
+/* 
+  This route will be called with the /users/delete/id/:id route
+  e.g. http://localhost:3000/users/delete/id/5e9b9b9b9b9b9b9b9b9b9b9b
+  This route will delete a user  
+*/
+router.get('/delete/id/:id', async function(req, res, next) {
+  await Users.deleteOne({
+    _id: req.params.id
+  })
+    .then((docs) => {
+      res.send(docs);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.send(err);
+    });
+});
+
 
 module.exports = router;

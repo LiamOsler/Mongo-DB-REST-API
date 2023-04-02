@@ -3,12 +3,12 @@
 <article>
   <header>
     <%- include("../partials/navuser") %>
-    <h2>Delete Users</h2>
+    <h2>Delete User</h2>
     <h3>API Route:</h3>
     <p>GET: <b>/users/delete/id/:id</b><br><i>deletes the user with :id if it exists</i></p>
     <br>
     <h3>Delete user:</h3>
-    <form id = "find-user">
+    <form id = "delete-user">
       <label for="user-id">User _id:</label><br>
       <input type="text" id="user-id" name="user-id" required><br><br>
       <input type="submit" value="Submit">
@@ -17,13 +17,13 @@
 </article>
 
 <script>
-  var findUser = document.getElementById('find-user');
+  var findUser = document.getElementById('delete-user');
   findUser.addEventListener('submit', function(e) {
     e.preventDefault();
     var userID = document.getElementById('user-id').value;
 
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', '/users/find/id/' + userID, true);
+    xhr.open('GET', '/users/delete/id/' + userID, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function() {
       if (xhr.status === 200) {
