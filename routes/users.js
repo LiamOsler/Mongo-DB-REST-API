@@ -110,16 +110,17 @@ router.get('/update', function(req, res, next) {
   This page is the page for updating information about an existing user.
 */
 router.put('/update/id/:id', async function(req, res, next) {
-  await Users.findOneAndUpdate(
-    {
-      _id: req.params.id
-    }, 
-    req.body,
-    {
-      returnOriginal: false
-    })
-    .then((doc) => {
-      res.send(doc);
+  console.log(req.body)
+  await Users.findOneAndUpdate({
+    _id: req.params.id
+  },
+  req.body,
+  {
+    returnOriginal: false
+  }
+  )
+    .then((docs) => {
+      res.send(docs);
     })
     .catch((err) => {
       console.error(err);
