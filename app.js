@@ -3,11 +3,23 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+const dbURI = `mongodb+srv://admin:CZGuX3v85p32WIu3@tutorial7.mjcxpho.mongodb.net/?retryWrites=true&w=majority`;
+
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(
+      function(){
+          console.log("DB Connected")
+      }
+      )
+  .catch(err => console.log(err));
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
