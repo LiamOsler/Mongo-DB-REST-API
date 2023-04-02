@@ -1,15 +1,42 @@
 <%- include("../partials/head") %>
 <%- include("../partials/navbar") %>
-
 <article>
   <header>
-    <h1>User Management</h1>
-    <ul class="usernav">
-      <li><a href="/users/create">Create New User</a></li>
-      <li><a href="/users/update">Update User</a></li>
-      <li><a href="/users/delete">Our Clients</a></li>  
-    </ul>
+    <%- include("../partials/navuser") %>
+    <h2>Find User</h2>
+    <h3>API Route:</h3>
+    <p>GET: <b>/users/find</b> <i>Gets an array of JSON objects with all the users</i></p>
+    <p>GET: <b>/users/find:id</b> <i>Gets a JSON objects for the user :id</i></p>
+    <br>
+    <h3>Find a User:</h3>
+    <form id = "find-user">
+      <label for="user-id">User _id:</label><br>
+      <input type="text" id="user-id" name="user-id" required><br><br>
+      <input type="submit" value="Submit">
+    </form>
   </header>
 </article>
-  
+
+<script>
+  var findUser = document.getElementById('find-user');
+
+
+  findUser.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var userID = document.getElementById('user-id').value;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/users/find/' + userID, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        alert('User Found:' + xhr.responseText);
+      } else {
+        alert('Error: ' + xhr.status);
+      }
+    };
+    xhr.send(JSON.stringify(userID));
+  });
+
+</script>
 <%- include("../partials/foot") %>

@@ -10,15 +10,13 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-const dbURI = `mongodb+srv://admin:CZGuX3v85p32WIu3@tutorial7.mjcxpho.mongodb.net/?retryWrites=true&w=majority`;
+const dbURI = `mongodb+srv://admin:CZGuX3v85p32WIu3@tutorial7.mjcxpho.mongodb.net/test?retryWrites=true&w=majority`;
 
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(
-      function(){
-          console.log("DB Connected")
-      }
-      )
-  .catch(err => console.log(err));
+mongoose.connect(dbURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+mongoose.set("strictQuery", true);
 
 
 // view engine setup

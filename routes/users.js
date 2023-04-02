@@ -21,8 +21,46 @@ router.get('/', function(req, res, next) {
   Retrieves a list of all the users
   This page is the main page for the users section.
 */
-router.get('/find', function(req, res, next) {
-  
+router.get('/find', async function(req, res, next) {
+  res.render('users/find', { title: 'Users' });
+});
+
+
+/* GET
+  Find users route.
+  e.g. http://localhost:3000/users/find
+  Retrieves a list of all the users
+  This page is the main page for the users section.
+*/
+router.get('/find', async function(req, res, next) {
+  await Users.find({})
+    .then((docs) => {
+      res.send(docs);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.send(err);
+    });
+});
+
+
+/* GET
+  Find users route.
+  e.g. http://localhost:3000/users/find
+  Retrieves a list of all the users
+  This page is the main page for the users section.
+*/
+router.get('/find/:id', async function(req, res, next) {
+  await Users.findOne({
+    _id: req.params.id
+  })
+    .then((docs) => {
+      res.send(docs);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.send(err);
+    });
 });
 
 /* GET
@@ -42,13 +80,16 @@ router.get('/create', function(req, res, next) {
   e.g. http://localhost:3000/users/create
   This route will create a new user
 */
-router.post('/create', function(req, res, next) {
-  let newUserContent = req.body;
-  var test = Model.findOne({_id:newUserContent.username}, function (err, docs) {
-    if(err)  console.error(err);
-    if(docs) res.send(docs);
-  });
-  res.send("hello");
+router.post('/create', async function(req, res, next) {
+  console.log(req);
+  await Users.create(req.body)
+    .then((doc) => {
+      res.send(doc);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.send(err);
+    });
 });
 
 /* 
