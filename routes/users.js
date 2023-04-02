@@ -27,12 +27,12 @@ router.get('/find', async function(req, res, next) {
 
 
 /* GET
-  Find users route.
+  Find all users route.
   e.g. http://localhost:3000/users/find
   Retrieves a list of all the users
   This page is the main page for the users section.
 */
-router.get('/find', async function(req, res, next) {
+router.get('/find/all', async function(req, res, next) {
   await Users.find({})
     .then((docs) => {
       res.send(docs);
@@ -50,7 +50,7 @@ router.get('/find', async function(req, res, next) {
   Retrieves a list of all the users
   This page is the main page for the users section.
 */
-router.get('/find/:id', async function(req, res, next) {
+router.get('/find/id/:id', async function(req, res, next) {
   await Users.findOne({
     _id: req.params.id
   })

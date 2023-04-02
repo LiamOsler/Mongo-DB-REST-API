@@ -3,30 +3,33 @@
 <article>
   <header>
     <%- include("../partials/navuser") %>
-    <h2>Find User</h2>
+    <h2>Find Users</h2>
     <h3>API Route:</h3>
-    <p>GET: <b>/users/find</b> <i>Gets an array of JSON objects with all the users</i></p>
-    <p>GET: <b>/users/find:id</b> <i>Gets a JSON objects for the user :id</i></p>
+    <p>GET: <b>/users/find/all</b> <i>Gets an array of JSON objects with all the users</i></p>
+    <p>GET: <b>/users/find/id/:id</b> <i>Gets a JSON objects for user with :id if it exists</i></p>
     <br>
-    <h3>Find a User:</h3>
+    <h3>Find a user:</h3>
     <form id = "find-user">
       <label for="user-id">User _id:</label><br>
       <input type="text" id="user-id" name="user-id" required><br><br>
       <input type="submit" value="Submit">
+    </form>
+    <br>
+    <h3>Get all users:</h3>
+    <form id = "get-users">
+      <input type="submit" value="Get">
     </form>
   </header>
 </article>
 
 <script>
   var findUser = document.getElementById('find-user');
-
-
   findUser.addEventListener('submit', function(e) {
     e.preventDefault();
     var userID = document.getElementById('user-id').value;
 
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', '/users/find/' + userID, true);
+    xhr.open('GET', '/users/find/id/' + userID, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function() {
       if (xhr.status === 200) {
@@ -35,7 +38,25 @@
         alert('Error: ' + xhr.status);
       }
     };
-    xhr.send(JSON.stringify(userID));
+    xhr.send();
+  });
+
+  var getUsers = document.getElementById('get-users');
+  
+  getUsers.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/users/find/all', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        alert('Users Found:' + xhr.responseText);
+      } else {
+        alert('Error: ' + xhr.status);
+      }
+    };
+    xhr.send();
   });
 
 </script>
