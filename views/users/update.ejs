@@ -45,6 +45,8 @@
 
   updateUser.addEventListener('submit', function(e) {
     e.preventDefault();
+    var userID = document.getElementById('user-id').value;
+
     var username = document.getElementById('username').value;
     var email = document.getElementById('email').value;
     var bio = document.getElementById('bio').value;
@@ -54,16 +56,16 @@
       bio: bio
     };
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/users/create', true);
+    xhr.open('PUT', '/users/update/id/' + userID, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function() {
       if (xhr.status === 200) {
-        alert('User Created:' + xhr.responseText);
+        alert('User Updated:' + xhr.responseText);
       } else {
         alert('Error: ' + xhr.status);
       }
     };
-    xhr.send();
+    xhr.send(JSON.stringify(data));
   });
 </script>
   

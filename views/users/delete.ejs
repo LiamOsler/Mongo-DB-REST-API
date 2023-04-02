@@ -17,8 +17,8 @@
 </article>
 
 <script>
-  var findUser = document.getElementById('delete-user');
-  findUser.addEventListener('submit', function(e) {
+  var deleteUser = document.getElementById('delete-user');
+  deleteUser.addEventListener('submit', function(e) {
     e.preventDefault();
     var userID = document.getElementById('user-id').value;
 
@@ -28,24 +28,6 @@
     xhr.onload = function() {
       if (xhr.status === 200) {
         alert('User Found:' + xhr.responseText);
-      } else {
-        alert('Error: ' + xhr.status);
-      }
-    };
-    xhr.send();
-  });
-
-  var getUsers = document.getElementById('get-users');
-  
-  getUsers.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', '/users/find/all', true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onload = function() {
-      if (xhr.status === 200) {
-        alert('Users Found:' + xhr.responseText);
       } else {
         alert('Error: ' + xhr.status);
       }
