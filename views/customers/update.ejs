@@ -47,7 +47,7 @@
       birthdate: birthdate
       };
     var xhr = new XMLHttpRequest();
-    xhr.open('PUT', '/customers/update/' + , true);
+    xhr.open('PUT', '/customers/update/' + customerID, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function() {
       if (xhr.status === 200) {

@@ -5,8 +5,15 @@
     <%- include("../partials/navcustomer") %>
     <h2>Update Customer</h2>
     <h3>API Route:</h3>
-    <p>POST: <b>/customers/delete/id/:id</b><br><i>Delete a customer</i></p>
+    <p>GET: <b>/customers/delete/id/:id</b><br><i>Delete a customer</i></p>
     <br>
+    <h3>Delete Customer:</h3>
+    <form id = "delete-user">
+      <label for="customer-id">Customer _id:</label><br>
+      <input type="text" id="customer-id" name="customer-id" required><br><br>
+      <input type="submit" value="Submit">
+    </form>
+  </header>
   </header>
 </article>
 

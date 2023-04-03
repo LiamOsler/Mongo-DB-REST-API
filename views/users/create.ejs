@@ -7,22 +7,6 @@
     <h2>Create New User</h2>
     <h3>API Route:</h3>
     <p>POST: <b>/users/create</b><br><i>submit a POST request with a JSON body</i></p>
-    <p>
-      <strong>Required values:</strong>
-      <ul>
-        <li>Username</li>
-        <li>Email Address</li>
-        <li>Bio</li>
-      </ul>
-    </p>
-<strong>Format:</strong>
-<pre>
-{
-  "username": "John Doe",
-  "email": "me@johndoe.com",
-  "bio": "I am not a deer"
-}
-</pre>
     <br>
     <h3>Create User:</h3>
     <form id = "create-user">
@@ -30,9 +14,8 @@
       <input type="text" id="username" name="username" required><br><br>
       <label for="email">Email:</label><br>
       <input type="email" id="email" name="email" required><br><br>
-      <label for="bio">Bio:</label><br>
-      <textarea rows="4" cols="50" type="text" id="bio" name="bio" ></textarea>
-      <br><br>
+      <label for="password">Password:</label><br>
+      <input type="password" id="password" name="password" required><br><br>
       <input type="submit" value="Submit">
     </form>
   </header>
@@ -45,11 +28,12 @@
     e.preventDefault();
     var username = document.getElementById('username').value;
     var email = document.getElementById('email').value;
-    var bio = document.getElementById('bio').value;
+    var password = document.getElementById('password').value;
+    console.log(password);
     var data = {
       username: username,
       email: email,
-      bio: bio
+      password: password
     };
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/users/create', true);
@@ -61,7 +45,7 @@
         alert('Error: ' + xhr.status);
       }
     };
-    xhr.send();
+    xhr.send(JSON.stringify(data));
   });
 
 </script>
