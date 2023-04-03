@@ -2,12 +2,10 @@ var express = require('express');
 var router = express.Router();
 
 var Users = require('../models/Users');
-console.log(Users);
 
 /* GET
   General users route.
   This route will be called with the /users/ route
-  e.g. http://localhost:3000/users
   This route will render the users view.
   This page is the main page for the users section.
 */
@@ -15,20 +13,9 @@ router.get('/', function(req, res, next) {
   res.render('users/users', { title: 'Users' });
 });
 
-/* GET
-  Find users route.
-  e.g. http://localhost:3000/users/find
-  Retrieves a list of all the users
-  This page is the main page for the users section.
-*/
-router.get('/find', async function(req, res, next) {
-  res.render('users/find', { title: 'Users' });
-});
-
 
 /* GET
   Find all users route.
-  e.g. http://localhost:3000/users/find
   Retrieves a list of all the users
   This page is the main page for the users section.
 */
@@ -46,7 +33,6 @@ router.get('/find/all', async function(req, res, next) {
 
 /* GET
   Find users route.
-  e.g. http://localhost:3000/users/find
   Retrieves a list of all the users
   This page is the main page for the users section.
 */
@@ -66,7 +52,6 @@ router.get('/find/id/:id', async function(req, res, next) {
 /* GET
   User creation page route.
   This route will be called with the /users/create route
-  e.g. http://localhost:3000/users/create
   This route will render the create user view.
   This page is the page for creating a new user.
 */
@@ -77,7 +62,6 @@ router.get('/create', function(req, res, next) {
 /* POST
   User creation page route.
   This route will be called with the /users/create route
-  e.g. http://localhost:3000/users/create
   This route will create a new user
 */
 router.post('/create', async function(req, res, next) {
@@ -94,7 +78,6 @@ router.post('/create', async function(req, res, next) {
 /* 
   User update page route.
   This route will be called with the /users/update route
-  e.g. http://localhost:3000/users/update
   This route will render the create user view.
   This page is the page for updating information about an existing user.
 */
@@ -105,7 +88,6 @@ router.get('/update', function(req, res, next) {
 /* 
   User update route.
   This route will be called with the /users/update route
-  e.g. http://localhost:3000/users/update
   This route will render the create user view.
   This page is the page for updating information about an existing user.
 */
@@ -133,7 +115,6 @@ router.put('/update/id/:id', async function(req, res, next) {
 /* 
   User deletion page route.
   This route will be called with the /users/delete route
-  e.g. http://localhost:3000/users/delete
   This route will render the create user view.
   This page is the page for updating information about an existing user.
 */

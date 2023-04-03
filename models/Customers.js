@@ -6,7 +6,6 @@ const schema = mongoose.Schema({
     address: String,
     birthdate: Date,
     email: String,
-    active: Boolean,
     accounts: [Number]
 }, 
 { strict: true }

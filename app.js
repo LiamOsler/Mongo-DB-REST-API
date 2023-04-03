@@ -7,6 +7,10 @@ var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var customersRouter = require('./routes/customers');
+var accountsRouter = require('./routes/accounts');
+var transactionsRouter = require('./routes/transactions');
+
 
 var app = express();
 
@@ -31,6 +35,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/customers', customersRouter);
+app.use('/accounts', accountsRouter);
+app.use('/transactions', transactionsRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

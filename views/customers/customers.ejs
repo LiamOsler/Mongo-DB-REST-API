@@ -1,0 +1,62 @@
+<%- include("../partials/head") %>
+<%- include("../partials/navbar") %>
+<article>
+  <header>
+    <%- include("../partials/navcustomer") %>
+    <h2>Find Customers</h2>
+    <h3>API Route:</h3>
+    <p>GET: <b>/customers/find/all</b><br><i>Gets an array of JSON objects with all the customers</i></p>
+    <p>GET: <b>/customers/find/id/:id</b><br><i>Gets a JSON objects for customer with :id if it exists</i></p>
+    <br>
+    <h3>Find a customer:</h3>
+    <form id = "find-customer">
+      <label for="user-id">Customer _id:</label><br>
+      <input type="text" id="customer-id" name="customer-id" required><br><br>
+      <input type="submit" value="Submit">
+    </form>
+    <br>
+    <h3>Get all customers:</h3>
+    <form id = "get-customers">
+      <input type="submit" value="Get">
+    </form>
+  </header>
+</article>
+
+<script>
+  var findCustomer = document.getElementById('find-customer');
+  findCustomer.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var userID = document.getElementById('customer-id').value;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/customers/find/id/' + userID, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        alert('Customer Found:' + xhr.responseText);
+      } else {
+        alert('Error: ' + xhr.status);
+      }
+    };
+    xhr.send();
+  });
+
+  var getCustomers = document.getElementById('get-customers');
+  
+  getCustomers.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/customers/find/all', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        alert('Customers Found:' + xhr.responseText);
+      } else {
+        alert('Error: ' + xhr.status);
+      }
+    };
+    xhr.send();
+  });
+</script>
+<%- include("../partials/foot") %>

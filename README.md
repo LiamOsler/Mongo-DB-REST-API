@@ -137,7 +137,7 @@ router.get('/', function(req, res, next) {
   This page is the main page for the users section.
 */
 router.get('/find', async function(req, res, next) {
-  res.render('users/find', { title: 'Users' });
+  res.render('users/find', { title: 'Users - Find' });
 });
 
 
